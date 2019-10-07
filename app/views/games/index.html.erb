@@ -1,0 +1,81 @@
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script
+    src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+    integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+    crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <br />
+    <h1>ChessMate Demo</h1>
+    <br />
+    <div class="container" id=<%= @game %>>
+        <% 8.times do |row_index| %>
+        <div class="row <%= (row_index + 1).even? ? "even" : "odd" %>">
+            <% 8.times do |col_index| %>
+            <div class="col <%= (col_index + row_index).even? ? "light" : "dark" %>"
+                row="<%= row_index %>"
+                col="<%= col_index %>">
+                <% if @game.board[row_index][col_index] %>
+                <p class="piece"><%= @PIECES[@game.board[row_index][col_index]].html_safe %></p>
+                <% end %>
+            </div>
+            <% end %>
+        </div>
+        <% end %>
+    </div>
+</body>
+
+<script>
+    function gameLoop() {
+        $('.piece').draggable({
+            revert: "invalid"
+        });
+
+        // jQueryUI drag and drop function
+        $('.col').droppable({
+            drop: (e, ui) => {
+                let destX = parseInt($(e.target).attr('col'));
+                let destY = parseInt($(e.target).attr('row'));
+                let originX = parseInt($(ui.draggable).parent().attr('col'));
+                let originY = parseInt($(ui.draggable).parent().attr('row'));
+
+                let destNotation = encodeNotation([destY, destX]);
+                let originNotation = encodeNotation([originY, originX]);
+
+                $.post("move", { origin: originNotation, destination: destNotation }); 
+
+                if (true) {
+                    // Update the DOM 
+                    e.target.innerHTML = `<p class="piece">${ui.draggable.html()}</p>`;
+                    // Delete the piece
+                    ui.draggable.remove();
+                    // Make all the pieces draggable again
+                    $('.piece').draggable({
+                        revert: "invalid"
+                    });
+
+                } else {
+                    return $(ui.draggable).draggable("option", "revert", true);
+                }
+            } 
+        });
+
+        function encodeNotation(coords) {
+            let [row, col] = coords;
+            let colStr, rowStr;
+
+            if (col >= 0 && col < 8 && row >= 0 && row < 8) {
+                colStr = String.fromCharCode(col + 97);
+                rowStr = (8 - row).toString()
+            } else {
+                return null;
+            }
+
+            return colStr + rowStr;
+        }
+    }
+
+    gameLoop();
+</script>
