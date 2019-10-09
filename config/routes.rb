@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   resources :games, only: %w(index)
 
   match "move", to: "games#move", via: :post
+  match "new", to: "games#new", via: :post
 end

@@ -23,9 +23,15 @@ class GamesController < ApplicationController
 
 	def move
 		@game = ChessMate.new(session[:game]["board"])
-		@game.move(params[:origin], params[:destination])
+		# binding.pry
+		@game.move(move_params[:origin], move_params[:destination])
 		session[:game] = @game
-		redirect_to root_path		
+		render js: "window.location = '#{root_path}'"
+	end
+
+	def new
+		reset_session
+		redirect_to root_path
 	end
 
 	private

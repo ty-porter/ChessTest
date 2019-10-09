@@ -10,7 +10,7 @@
     <br />
     <h1>ChessMate Demo</h1>
     <br />
-    <div class="container" id=<%= @game %>>
+    <div class="game-container" id=<%= @game %>>
         <% 8.times do |row_index| %>
         <div class="row <%= (row_index + 1).even? ? "even" : "odd" %>">
             <% 8.times do |col_index| %>
@@ -23,6 +23,11 @@
             </div>
             <% end %>
         </div>
+        <% end %>
+    </div>
+    <div class="button-container">
+        <%= form_tag new_path, method: :post do %>
+            <%= submit_tag 'New Game' %>
         <% end %>
     </div>
 </body>
@@ -46,19 +51,19 @@
 
                 $.post("move", { origin: originNotation, destination: destNotation }); 
 
-                if (true) {
-                    // Update the DOM 
-                    e.target.innerHTML = `<p class="piece">${ui.draggable.html()}</p>`;
-                    // Delete the piece
-                    ui.draggable.remove();
-                    // Make all the pieces draggable again
-                    $('.piece').draggable({
-                        revert: "invalid"
-                    });
+                // if (true) {
+                //     // Update the DOM 
+                //     e.target.innerHTML = `<p class="piece">${ui.draggable.html()}</p>`;
+                //     // Delete the piece
+                //     ui.draggable.remove();
+                //     // Make all the pieces draggable again
+                //     $('.piece').draggable({
+                //         revert: "invalid"
+                //     });
 
-                } else {
-                    return $(ui.draggable).draggable("option", "revert", true);
-                }
+                // } else {
+                //     return $(ui.draggable).draggable("option", "revert", true);
+                // }
             } 
         });
 
