@@ -1,6 +1,14 @@
 // Place all the styles related to the game controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+	background: #0f0c29;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to right, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */	
+	font-family: 'Assistant', sans-serif;
+	color: white;
+	text-shadow: 2px 2px black;
+}
 
 h1,h2 {
 	text-align: center;
@@ -21,8 +29,12 @@ h2 {
 }
 
 .stats-container {
+	border-radius: 5px;
+	background-color: rgba(255, 255, 255, .1);
 	text-align: left;
 	width: auto;
+	padding: 5px;
+	box-shadow: 1px 1px rgba(255, 255, 255, .5);
 }
 
 .stats-container p {
@@ -62,6 +74,8 @@ h2 {
 	margin: 0;
 	font-size: 35px;
 	cursor: pointer;
+	color: black;
+	text-shadow: none;
 }
 
 .button-container {
@@ -70,4 +84,10 @@ h2 {
 
 input[type="submit"] {
 	margin: 5px;
+	border-radius: 4px;
+	border: none;
+	color: white;
+	text-shadow: 2px 2px black;
+	background-color: green;
+	box-shadow: 1px 1px rgba(255, 255, 255, .3);
 }
