@@ -7,80 +7,91 @@
 </head>
 
 <body>
-    <br />
-    <h1>ChessMate Demo</h1>
-    <br />
+  <br />
+  <h1>ChessMate Demo</h1>
+  <% if @game.checkmate?('W') || @game.checkmate?('B') %>
+    <h2>Checkmate! <%= @game.checkmate?('W') ? "Black" : "White" %> wins! </h2>
+  <% end %>
+  <br />
+  <div class="page-container">
     <div class="game-container" id=<%= @game %>>
-        <% 8.times do |row_index| %>
+      <% 8.times do |row_index| %>
         <div class="row <%= (row_index + 1).even? ? "even" : "odd" %>">
-            <% 8.times do |col_index| %>
+          <% 8.times do |col_index| %>
             <div class="col <%= (col_index + row_index).even? ? "light" : "dark" %>"
-                row="<%= row_index %>"
-                col="<%= col_index %>">
-                <% if @game.board[row_index][col_index] %>
+              row="<%= row_index %>"
+              col="<%= col_index %>">
+              <% if @game.board[row_index][col_index] %>
                 <p class="piece"><%= @PIECES[@game.board[row_index][col_index]].html_safe %></p>
-                <% end %>
+              <% end %>
             </div>
-            <% end %>
+          <% end %>
         </div>
-        <% end %>
+      <% end %>
     </div>
-    <div class="button-container">
-        <%= form_tag new_path, method: :post do %>
-            <%= submit_tag 'New Game' %>
+
+    <div class="stats-container">
+      <h3>Turn:</h3>
+      <p><%= @game.turn %></p>
+      <h3>En Passant</h3>
+      <% @game.en_passant.keys.each do |key| %>
+        <p><%= key.to_s.capitalize %>: <%= @game.en_passant[key] || "Not Available" %></p>
+      <% end %>
+      <h3>Check</h3>
+      <% @game.in_check.keys.each do |key| %>
+        <p><%= key.to_s.capitalize %>: <%= @game.in_check[key] %></p>
+      <% end %>
+      <h3>Castling Available</h3>
+      <% @game.castling.keys.each do |color| %>
+        <p><%= color.to_s.capitalize %></p>
+        <% @game.castling[color].keys.each do |direction| %> 
+          <span><%= direction.to_s.capitalize %>: <%= @game.castling[color][direction] %></span>
         <% end %>
+      <% end %>
     </div>
+  </div>
+  <div class="button-container">
+    <%= form_tag new_path, method: :post do %>
+      <%= submit_tag 'New Game' %>
+    <% end %>
+  </div>
 </body>
 
 <script>
-    function gameLoop() {
-        $('.piece').draggable({
-            revert: "invalid"
-        });
+  function gameLoop() {
+    $('.piece').draggable({
+        revert: "invalid"
+    });
 
-        // jQueryUI drag and drop function
-        $('.col').droppable({
-            drop: (e, ui) => {
-                let destX = parseInt($(e.target).attr('col'));
-                let destY = parseInt($(e.target).attr('row'));
-                let originX = parseInt($(ui.draggable).parent().attr('col'));
-                let originY = parseInt($(ui.draggable).parent().attr('row'));
+    // jQueryUI drag and drop function
+    $('.col').droppable({
+        drop: (e, ui) => {
+          let destX = parseInt($(e.target).attr('col'));
+          let destY = parseInt($(e.target).attr('row'));
+          let originX = parseInt($(ui.draggable).parent().attr('col'));
+          let originY = parseInt($(ui.draggable).parent().attr('row'));
 
-                let destNotation = encodeNotation([destY, destX]);
-                let originNotation = encodeNotation([originY, originX]);
+          let destNotation = encodeNotation([destY, destX]);
+          let originNotation = encodeNotation([originY, originX]);
 
-                $.post("move", { origin: originNotation, destination: destNotation }); 
+          $.post("move", { origin: originNotation, destination: destNotation }); 
+        } 
+    });
 
-                // if (true) {
-                //     // Update the DOM 
-                //     e.target.innerHTML = `<p class="piece">${ui.draggable.html()}</p>`;
-                //     // Delete the piece
-                //     ui.draggable.remove();
-                //     // Make all the pieces draggable again
-                //     $('.piece').draggable({
-                //         revert: "invalid"
-                //     });
+    function encodeNotation(coords) {
+      let [row, col] = coords;
+      let colStr, rowStr;
 
-                // } else {
-                //     return $(ui.draggable).draggable("option", "revert", true);
-                // }
-            } 
-        });
+      if (col >= 0 && col < 8 && row >= 0 && row < 8) {
+        colStr = String.fromCharCode(col + 97);
+        rowStr = (8 - row).toString()
+      } else {
+        return null;
+      }
 
-        function encodeNotation(coords) {
-            let [row, col] = coords;
-            let colStr, rowStr;
-
-            if (col >= 0 && col < 8 && row >= 0 && row < 8) {
-                colStr = String.fromCharCode(col + 97);
-                rowStr = (8 - row).toString()
-            } else {
-                return null;
-            }
-
-            return colStr + rowStr;
-        }
+      return colStr + rowStr;
     }
+  }
 
-    gameLoop();
+  gameLoop();
 </script>

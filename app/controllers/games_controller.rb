@@ -3,7 +3,7 @@ class GamesController < ApplicationController
 	require 'chessmate'
 
 	def index
-		@game = session[:game].nil? ? ChessMate.new : ChessMate.new(session[:game]["board"])
+		@game = session[:game].nil? ? ChessMate.new : ChessMate.new(**game_params)
 		@PIECES = {
 			"BK" => "&#9818;",
 			"BQ" => "&#9819;",
@@ -18,13 +18,13 @@ class GamesController < ApplicationController
 			"WN" => "&#9816;",
 			"WP" => "&#9817;"
 		}
-		session[:game] = @game
 	end
 
 	def move
-		@game = ChessMate.new(session[:game]["board"])
-		# binding.pry
-		@game.move(move_params[:origin], move_params[:destination])
+		@game = session[:game].nil? ? ChessMate.new : ChessMate.new(**game_params)
+		if @game.move(move_params[:origin], move_params[:destination], test=true)
+			@game.move(move_params[:origin], move_params[:destination])
+		end
 		session[:game] = @game
 		render js: "window.location = '#{root_path}'"
 	end
@@ -38,5 +38,10 @@ class GamesController < ApplicationController
 
 	def move_params
 		params.permit(:origin, :destination)
+	end
+
+	def game_params
+		params = session[:game].deep_symbolize_keys
+		params
 	end
 end
