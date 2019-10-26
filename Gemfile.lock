@@ -1,5 +1,6 @@
-PATH
-  remote: ../chessmate
+GIT
+  remote: https://github.com/pawptart/ChessMate
+  revision: d43152b68413f572188e3a25a5e69bd9e43b2b90
   specs:
     chessmate (0.7.1)
       deep_dup (~> 0)
