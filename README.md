@@ -1,24 +1,6 @@
-# README
+<p align="center">
+  <img src="https://i.imgur.com/vyQjL4Y.png">
+</p>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# ChessMate Demo
+This is the demo repo for the ChessMate gem! Get ChessMate [here!](https://github.com/pawptart/ChessMate) 
