@@ -31,6 +31,20 @@
       <% end %>
     </div>
 
+    <div class="move-history-container">
+      <h3>History:</h3>
+      <% @history.each_slice(2).with_index do |move_row, row_index| %>
+        <div class="move-history-row">
+          <span>
+            <%= row_index + 1 %>).
+            <% move_row.each do |move| %>
+              <%= move %>
+            <% end %>
+          </span>
+        </div>
+      <% end %>
+    </div>
+
     <div class="stats-container">
       <h3>Turn:</h3>
       <p><%= @game.turn %></p>

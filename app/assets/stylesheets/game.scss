@@ -28,21 +28,27 @@ h2 {
 	border: 3px solid black;
 }
 
-.stats-container {
+.stats-container, .move-history-container {
 	border-radius: 5px;
 	background-color: rgba(255, 255, 255, .1);
 	text-align: left;
-	width: auto;
+	width: 225px; 
 	padding: 5px;
 	box-shadow: 1px 1px rgba(255, 255, 255, .5);
 }
 
-.stats-container p {
+.move-history-container {
+	margin-right: 50px;
+	overflow-y: scroll;
+	height: 395px;
+}
+
+.stats-container p, .move-history-container p {
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
 
-.stats-container h3 {
+.stats-container h3, .move-history-container h3 {
 	margin-bottom: 5px;
 	margin-top: 5px;
 }

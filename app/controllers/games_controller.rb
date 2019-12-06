@@ -18,6 +18,7 @@ class GamesController < ApplicationController
 			"WN" => "&#9816;",
 			"WP" => "&#9817;"
 		}
+		@history = @game.move_history
 	end
 
 	def move

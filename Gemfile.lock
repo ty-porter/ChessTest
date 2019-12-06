@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/pawptart/ChessMate
-  revision: d43152b68413f572188e3a25a5e69bd9e43b2b90
+  revision: 397ae4cc88bbd67c7cff71b2b52d4ee651362048
   specs:
-    chessmate (0.7.1)
+    chessmate (0.8.0)
       deep_dup (~> 0)
 
 GEM
@@ -233,7 +233,7 @@ DEPENDENCIES
   webpacker (~> 4.0)
 
 RUBY VERSION
-   ruby 2.5.6p201
+   ruby 2.6.5p114
 
 BUNDLED WITH
    2.0.2
