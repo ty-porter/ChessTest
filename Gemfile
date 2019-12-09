@@ -56,5 +56,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :production do 
   # Enable production gem 
-  gem 'chessmate', git: 'https://github.com/pawptart/ChessMate'
+  gem 'chessmate'
 end
