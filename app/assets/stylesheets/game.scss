@@ -68,11 +68,11 @@ h2 {
 }
 
 .light {
-	background-color: white;
+	background-color: #ECECD2;
 }
 
 .dark {
-	background-color: gray;
+	background-color: #779557;
 }
 
 .piece {
@@ -97,4 +97,16 @@ input[type="submit"] {
 	text-shadow: 2px 2px black;
 	background-color: green;
 	box-shadow: 1px 1px rgba(255, 255, 255, .3);
+}
+
+p.piece i {
+	text-shadow: 0 0 2px #000;
+}
+
+i.white {
+	color: white;
+}
+
+i.black {
+	color: black
 }

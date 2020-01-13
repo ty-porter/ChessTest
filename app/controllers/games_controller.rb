@@ -5,18 +5,18 @@ class GamesController < ApplicationController
 	def index
 		@game = session[:game].nil? ? ChessMate.new : ChessMate.new(**game_params)
 		@PIECES = {
-			"BK" => "&#9818;",
-			"BQ" => "&#9819;",
-			"BR" => "&#9820;",
-			"BB" => "&#9821;",
-			"BN" => "&#9822;",
-			"BP" => "&#9823;",
-			"WK" => "&#9812;",
-			"WQ" => "&#9813;",
-			"WR" => "&#9814;",
-			"WB" => "&#9815;",
-			"WN" => "&#9816;",
-			"WP" => "&#9817;"
+			"BK" => "king",
+			"BQ" => "queen",
+			"BR" => "rook",
+			"BB" => "bishop",
+			"BN" => "knight",
+			"BP" => "pawn",
+			"WK" => "king",
+			"WQ" => "queen",
+			"WR" => "rook",
+			"WB" => "bishop",
+			"WN" => "knight",
+			"WP" => "pawn"
 		}
 		@history = @game.move_history
 	end

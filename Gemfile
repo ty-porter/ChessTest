@@ -56,5 +56,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :production do 
   # Enable production gem 
-  gem 'chessmate', '~> 0.8.1'
+  gem 'chessmate', '~> 0.8.2'
 end
+
+gem 'font-awesome-rails'
