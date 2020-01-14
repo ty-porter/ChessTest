@@ -26,7 +26,7 @@
               <% if @game.board[row_index][col_index] %>
                 <% piece = @game.board[row_index][col_index] %>
                 <p class="piece">
-                  <i class="<%= piece[0] == "W" ? "white" : "black" %> fas fa-chess-<%= @PIECES[piece].html_safe %>-alt"></i>
+                  <i class="<%= piece[0] == "W" ? "white" : "black" %> fas fa-chess-<%= @pieces[piece].html_safe %>-alt"></i>
                 </p>
               <% end %>
             </div>

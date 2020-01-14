@@ -1,0 +1,47 @@
+AllCops:
+  Exclude: 
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+    - 'config/**/*'
+    - 'bin/**/*'
+    - 'db/schema.rb'
+    - 'db/migrate/*.rb'
+    - 'test/test_helper.rb'
+    - 'config.ru'
+
+Layout/LineLength:
+  Max: 99
+  Exclude:
+    - 'Gemfile'
+    - 'db/seeds.rb'
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/MethodLength:
+  Enabled: false
+
+Metrics/AbcSize: 
+  Enabled: false
+
+Metrics/PerceivedComplexity:
+  Enabled: false
+
+Metrics/CyclomaticComplexity:
+  Enabled: false
+
+Metrics/ClassLength:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/BlockNesting:
+  Max: 5
+
+Metrics/ParameterLists:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Exclude: 
+    - 'test/**/*'
