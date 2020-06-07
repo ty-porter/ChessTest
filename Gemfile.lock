@@ -120,6 +120,8 @@ GEM
     public_suffix (4.0.1)
     puma (3.12.2)
     rack (2.0.8)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
@@ -234,6 +236,7 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   pry
   puma (~> 3.12)
+  rack-cors
   rails (~> 6.0.0)
   rubocop
   sass-rails (~> 5)
@@ -250,4 +253,4 @@ RUBY VERSION
    ruby 2.6.5p114
 
 BUNDLED WITH
-   2.0.2
+   2.1.4
