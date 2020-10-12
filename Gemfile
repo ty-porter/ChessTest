@@ -65,3 +65,5 @@ end
 gem 'font-awesome-rails'
 
 gem 'rack-cors'
+
+gem 'dotenv-rails'

@@ -1,11 +1,13 @@
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script
-    src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
-    integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
-    crossorigin="anonymous"></script>
+      src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+      integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30="
+      crossorigin="anonymous"
+    >
+    </script>
     <link href="https://fonts.googleapis.com/css?family=Assistant&display=swap" rel="stylesheet">
-    <script src="https://kit.fontawesome.com/5fa003b277.js" crossorigin="anonymous"></script>
+    <script src=<%= ENV["FONT_AWESOME_KIT_URL"] %> crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -26,7 +28,7 @@
               <% if @game.board[row_index][col_index] %>
                 <% piece = @game.board[row_index][col_index] %>
                 <p class="piece">
-                  <i class="<%= piece[0] == "W" ? "white" : "black" %> fas fa-chess-<%= @pieces[piece].html_safe %>-alt"></i>
+                  <i class="<%= piece[0] == "W" ? "white" : "black" %> fas fa-chess-<%= @pieces[piece].html_safe %>"></i>
                 </p>
               <% end %>
             </div>

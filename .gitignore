@@ -30,3 +30,6 @@
 yarn-debug.log*
 .yarn-integrity
 lib/local_gems/
+
+# Ignore development, test environment variables
+.env.*
